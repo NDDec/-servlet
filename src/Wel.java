@@ -17,15 +17,8 @@ public class Wel extends HttpServlet {
     private String passwd;
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
-        final String url = "jdbc:mysql://localhost:3306/Dingdb";
-        final String name = "ding";
-        final String passwd = "aaaa";
         String name_cookie = null;
         String passwd_cookie = null;
-
-        Connection ct = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
 
         try {
             //中文乱码
@@ -69,7 +62,7 @@ public class Wel extends HttpServlet {
                 }
             }
 
-            int pageSize = 3;//一页显示几条记录
+            int pageSize = 10;//一页显示几条记录
             int pageNow=1;//希望显示第几页
             String spagenow = req.getParameter("pageNow");
             if(spagenow != null)
@@ -84,7 +77,8 @@ public class Wel extends HttpServlet {
             {
                 UserBean ub = (UserBean)al.get(i);
                 pw.println("<tr>");
-                pw.println("<tb>"+ub.getUserId()+"</td>");
+
+                pw.println("<td>"+ub.getUserId()+"</td>");
 
                 pw.println("<td>"+ub.getUsername()+"</td>");
 
