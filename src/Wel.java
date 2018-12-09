@@ -1,8 +1,5 @@
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,12 +13,16 @@ import java.sql.ResultSet;
 @WebServlet("/wel")
 
 public class Wel extends HttpServlet {
+    private String passwd;
+
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         //String u = req.getParameter("uname");
         //String p = req.getParameter("upass");
         final String url = "jdbc:mysql://localhost:3306/Dingdb";
         final String name = "ding";
         final String passwd = "aaaa";
+        String name_cookie = null;
+        String passwd_cookie = null;
 
         Connection ct = null;
         PreparedStatement ps = null;
@@ -39,8 +40,31 @@ public class Wel extends HttpServlet {
 
             if(val == null) {
                 try {
-                    res.sendRedirect("login?info=error");
-                    return;
+                    //在session中判断没有信息之后，需要判断cookie中是否有信息
+                    Cookie [] allcookies = req.getCookies();
+                    if(allcookies != null) {
+                        for (int i = 0; i < allcookies.length; i++)
+                        {
+                            Cookie temp = allcookies[i];
+                            if(temp.getName().equals("myname"))
+                            {
+                                name_cookie = temp.getValue();
+                            }
+                            if(temp.getName().equals("mypasswd"))
+                            {
+                                passwd_cookie = temp.getValue();
+                            }
+                        }
+                        if(!name_cookie.equals("") && !passwd_cookie.equals(""))
+                        {
+                            res.sendRedirect("logincl?username="+name_cookie+"&passwd="+passwd_cookie+" ");
+                            return;
+                        }
+                    }
+                    else {
+                        res.sendRedirect("login?info=error");
+                        return;
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

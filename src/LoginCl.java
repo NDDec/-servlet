@@ -1,8 +1,5 @@
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import javax.swing.plaf.nimbus.State;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -31,7 +28,7 @@ public class LoginCl extends HttpServlet {
             res.setContentType("text/html;charset=gbk");
             //接受用户名和密码
             String u = req.getParameter("username");
-            String p = req.getParameter("passwd")  ;
+            String p = req.getParameter("passwd");
             //验证
             //连接数据库
             Class.forName("com.mysql.jdbc.Driver");
@@ -43,6 +40,17 @@ public class LoginCl extends HttpServlet {
             {
                 String dbpasswd = rs.getString(1);
                 if(dbpasswd.equals(p)) {
+
+                    String keep = req.getParameter("keep");
+                    if(keep != null) {
+                        Cookie name_cookie = new Cookie("myname", u);
+                        Cookie pass_cookie = new Cookie("mypasswd", p);
+                        name_cookie.setMaxAge(14 * 24 * 3600);
+                        pass_cookie.setMaxAge(14 * 24 * 3600);
+                        res.addCookie(name_cookie);
+                        res.addCookie(pass_cookie);
+                    }
+
                     HttpSession hs = req.getSession(true);
                     hs.setMaxInactiveInterval(20);
                     hs.setAttribute("name", u);

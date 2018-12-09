@@ -29,6 +29,7 @@ public class Login extends HttpServlet {
             pw.println("<form action=logincl method=get>");
             pw.println("用户名:<input type=text name = username><br>");
             pw.println("密码:<input type = text name = passwd><br>");
+            pw.println("<input type = checkbox name = keep value = 2>两周内不再重新登录<br>");
             pw.println("<input type = submit value=login><br>");
             pw.println("</form>");
             pw.println("</body>");
