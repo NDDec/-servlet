@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  * Created by mi on 18-12-5.
@@ -16,8 +17,6 @@ public class Wel extends HttpServlet {
     private String passwd;
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
-        //String u = req.getParameter("uname");
-        //String p = req.getParameter("upass");
         final String url = "jdbc:mysql://localhost:3306/Dingdb";
         final String name = "ding";
         final String passwd = "aaaa";
@@ -70,67 +69,45 @@ public class Wel extends HttpServlet {
                 }
             }
 
-            int pagesize = 3;//一页显示几条记录
-            int pagenow=1;//希望显示第几页
-            int rowcount = 0;//一共多少条记录
-            int pagecount = 0;//共有几页
-
+            int pageSize = 3;//一页显示几条记录
+            int pageNow=1;//希望显示第几页
             String spagenow = req.getParameter("pageNow");
             if(spagenow != null)
             {
-                    pagenow = Integer.parseInt(spagenow);
+                    pageNow = Integer.parseInt(spagenow);
             }
-
-            Class.forName("com.mysql.jdbc.Driver");
-            ct = DriverManager.getConnection(url,name,passwd);
-            ps = ct.prepareStatement("select count(*) from users");
-            rs = ps.executeQuery();
-            if(rs.next())
-            {
-                rowcount = rs.getInt(1);
-            }
-            if(rowcount%pagesize==0)
-            {
-                pagecount = rowcount/pagesize;
-            }
-            else
-            {
-                pagecount = rowcount/pagesize + 1;
-            }
-
-            ps=ct.prepareStatement("select * from users limit ?,?");
-            ps.setInt(1,(pagenow-1)*pagesize);
-            ps.setInt(2,pagesize);
-            rs = ps.executeQuery();
+            UserBeanCl ubc = new UserBeanCl();
+            ArrayList al = ubc.getResultByPage(pageNow,pageSize);
             pw.println("<table border = 1");
             pw.println("<tr><th>id</th><th>name</th><th>passwd</th><th>mail</th><th>grade</th>");
-            while(rs.next())
+            for(int i = 0;i < al.size();i++)
             {
+                UserBean ub = (UserBean)al.get(i);
                 pw.println("<tr>");
-                pw.println("<td>"+rs.getInt(1)+"</td>");
+                pw.println("<tb>"+ub.getUserId()+"</td>");
 
-                pw.println("<td>"+rs.getString(2)+"</td>");
+                pw.println("<td>"+ub.getUsername()+"</td>");
 
-                pw.println("<td>"+rs.getString(3)+"</td>");
+                pw.println("<td>"+ub.getPasswd()+"</td>");
 
-                pw.println("<td>"+rs.getString(4)+"</td>");
+                pw.println("<td>"+ub.getEmail()+"</td>");
 
-                pw.println("<td>"+rs.getInt(5)+"</td>");
+                pw.println("<td>"+ub.getGrade()+"</td>");
 
                 pw.println("</tr>");
             }
             pw.println("</table>");
-            if(pagenow != 1)
+            if(pageNow != 1)
             {
-                pw.println("<a href=wel?pageNow="+(pagenow-1)+">上一页</a>");
+                pw.println("<a href=wel?pageNow="+(pageNow-1)+">上一页</a>");
             }
-            for(int i = pagenow;i <= pagenow+4;i++)
+            for(int i = pageNow;i <= pageNow+4;i++)
             {
                 pw.println("<a href=wel?pageNow="+i+">"+i+"</a>");
             }
-            if(pagenow != pagecount)
+            if(pageNow != ubc.getPageCount())
             {
-                pw.println("<a href=wel?pageNow="+(pagenow+1)+">下一页</a>");
+                pw.println("<a href=wel?pageNow="+(pageNow+1)+">下一页</a>");
             }
             pw.println("<br><a href = login>重新登录</a>");
             pw.println("</center></body>");
