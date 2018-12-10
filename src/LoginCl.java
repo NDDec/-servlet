@@ -15,6 +15,44 @@ import java.sql.Statement;
 @WebServlet("/logincl")
 
 public class LoginCl extends HttpServlet {
+    //重写init函数
+    public void init()
+    {
+        try
+        {
+            //添加网页访问次数的功能
+            FileReader f = new FileReader("/home/mi/桌面/myCounter.txt");
+            BufferedReader br = new BufferedReader(f);
+            String numVal = br.readLine();
+            br.close();
+            if(numVal == null)
+            {
+                numVal = "0";
+            }
+            //将numVal值放入到servletcontext中
+            this.getServletContext().setAttribute("visitTimes",numVal);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
+    //重写distroy函数
+    public void destroy()
+    {
+        try
+        {
+            FileWriter f1 = new FileWriter("/home/mi/桌面/myCounter.txt");
+            BufferedWriter bw = new BufferedWriter(f1);
+            String times = this.getServletContext().getAttribute("visitTimes").toString();
+            bw.write(times);
+            bw.close();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         Connection ct = null;
         Statement sm = null;
@@ -30,22 +68,6 @@ public class LoginCl extends HttpServlet {
             UserBeanCl ubc = new UserBeanCl();
             if(ubc.checkUser(u,p))
             {
-                //添加网页访问次数的功能
-                FileReader f = new FileReader("/home/mi/桌面/myCounter.txt");
-                BufferedReader br = new BufferedReader(f);
-                String numVal = br.readLine();
-                br.close();
-                if(numVal == null)
-                {
-                    numVal = "0";
-                }
-                int times = Integer.parseInt(numVal);
-                times++;
-                FileWriter f1 = new FileWriter("/home/mi/桌面/myCounter.txt");
-                BufferedWriter bw = new BufferedWriter(f1);
-                bw.write(times+"");
-                bw.close();
-
                 //添加进cookie
                 String keep = req.getParameter("keep");
                 if(keep != null)
@@ -60,6 +82,8 @@ public class LoginCl extends HttpServlet {
                 HttpSession hs = req.getSession(true);
                 hs.setMaxInactiveInterval(20);
                 hs.setAttribute("name", u);
+                String times = this.getServletContext().getAttribute("visitTimes").toString();
+                this.getServletContext().setAttribute("visitTimes",(Integer.parseInt(times)+1)+"");
                 res.sendRedirect("wel");
             }
             else
