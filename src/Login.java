@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 /**
  * Created by mi on 18-12-5.
  */
-//用户登录网站v1.0
+//用户登录网站
 //登录界面
     @WebServlet("/login")
 

@@ -1,10 +1,6 @@
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -101,8 +97,13 @@ public class Wel extends HttpServlet {
             }
             if(pageNow != ubc.getPageCount())
             {
-                pw.println("<a href=wel?pageNow="+(pageNow+1)+">下一页</a>");
+                pw.println("<a href=wel?pageNow="+(pageNow+1)+">下一页</a><br>");
             }
+            FileReader f = new FileReader("/home/mi/桌面/myCounter.txt");
+            BufferedReader br = new BufferedReader(f);
+            String numVal = br.readLine();
+            br.close();
+            pw.println("该网页被访问了"+numVal+"次" );
             pw.println("<br><a href = login>重新登录</a>");
             pw.println("</center></body>");
         } catch (Exception ex) {
