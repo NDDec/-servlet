@@ -15,7 +15,6 @@ public class Wel extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         String name_cookie = null;
         String passwd_cookie = null;
-
         try {
             //中文乱码
             res.setContentType("text/html;charset=gbk");
@@ -95,15 +94,13 @@ public class Wel extends HttpServlet {
             {
                 pw.println("<a href=wel?pageNow="+i+">"+i+"</a>");
             }
-            if(pageNow != ubc.getPageCount())
-            {
-                pw.println("<a href=wel?pageNow="+(pageNow+1)+">下一页</a><br>");
+            if(pageNow != ubc.getPageCount()) {
+                pw.println("<a href=wel?pageNow=" + (pageNow + 1) + ">下一页</a><br>");
             }
-            FileReader f = new FileReader("/home/mi/桌面/myCounter.txt");
-            BufferedReader br = new BufferedReader(f);
-            String numVal = br.readLine();
-            br.close();
-            pw.println("该网页被访问了"+numVal+"次" );
+            String numVal = this.getServletContext().getAttribute("visitTimes").toString();
+            pw.println("该网页被访问了"+numVal+"次<br>" );
+            pw.println("您的ip="+req.getRemoteAddr()+"");
+            pw.println(" 您的机器名="+req.getRemoteHost()+"<br>");
             pw.println("<br><a href = login>重新登录</a>");
             pw.println("</center></body>");
         } catch (Exception ex) {
