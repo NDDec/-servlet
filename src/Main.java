@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * Created by mi on 18-12-5.
+ * Created by mi on 18-12-10.
  */
 //用户登录网站
-//登录界面
-@WebServlet("/login")
+//主界面
+@WebServlet("/main")
 
-public class Login extends HttpServlet {
+public class Main extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         try {
 
@@ -20,21 +20,14 @@ public class Login extends HttpServlet {
             PrintWriter pw = res.getWriter();
             pw.println("<html>");
             pw.println("<body background = imgs/background.gif>");
-           // pw.println("<img src = imgs/sysu.gif width = 300 height = 200><br><center>");
             pw.println("<br><br><br><br><br><br><br><br><br><br><br><br><hr><center>");
-            String info = req.getParameter("info");
-            if(info != null)
-            {
-                pw.println("<h3>请先输入用户名和密码</h3>");
-            }
-            pw.println("<h1>登录界面</h1>");
-            pw.println("<form action=logincl method=get>");
-            pw.println("用户名:<input type=text name = username><br><br>");
-            pw.println("密码:<input type = text name = passwd><br><br>");
-            pw.println("<input type = checkbox name = keep value = 2>两周内不再重新登录<br><br>");
-            pw.println("<input type = submit value=login><hr>");
-            pw.println("</form>");
-            pw.println("</center>");
+           // pw.println("<img src = imgs/wel.gif><hr><center>");
+
+            pw.println("<h1>主界面</h1>");
+            pw.println("<a href=wel>管理用户</a><br>");
+            pw.println("<a href=???>添加用户</a><br>");
+            pw.println("<a href=???>查找用户</a><br>");
+            pw.println("<a href=???>安全退出</a><br>");
             pw.println("</body>");
             pw.println("</html>");
 

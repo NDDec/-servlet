@@ -22,7 +22,6 @@ public class UserBeanCl
         return this.pageCount;
     }
 
-
     //分页处理
     public ArrayList getResultByPage(int pageNow, int pageSize)
     {
@@ -87,6 +86,84 @@ public class UserBeanCl
                 {
                     res = true;
                 }
+            }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            this.close();
+        }
+        return res;
+    }
+
+    //删除用户
+    public boolean delUser(String id)
+    {
+        boolean res = false;
+        try
+        {
+            ConnDB cd = new ConnDB();
+            ct = cd.getConn();
+            String sql = "delete from users where userId = ? ";
+            ps = ct.prepareStatement(sql);
+            ps.setString(1,id);
+            int num = ps.executeUpdate();//受影响的记录条数
+            if(num == 1)
+            {
+                //用户删除成功
+                res = true;
+            }
+            else
+            {
+                //删除失败
+            }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        finally
+        {
+            this.close();
+        }
+        return res;
+    }
+
+    //修改用户
+    public boolean updateUser(String id,String name,String passwd,String email,String grade)
+    {
+        boolean res = false;
+        try
+        {
+            ConnDB cd = new ConnDB();
+            ct = cd.getConn();
+
+            String sql = "update users set username=?,passwd=?,email=?,grade=? where userId = ? ";
+            ps = ct.prepareStatement(sql);
+            ps.setString(1,name);
+            ps.setString(2,passwd);
+            ps.setString(3,email);
+            ps.setInt(5, Integer.parseInt(id));
+            if(grade != "")
+            {
+                ps.setInt(4, Integer.parseInt(grade));
+            }
+            else if(grade == "")
+            {
+                ps.setInt(4, 0);
+            }
+            int num = ps.executeUpdate();//受影响的记录条数
+            if(num == 1)
+            {
+                //用户修改成功
+                res = true;
+            }
+            else
+            {
+                //修改失败
             }
         }
         catch(Exception ex)

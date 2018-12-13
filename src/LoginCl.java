@@ -80,11 +80,11 @@ public class LoginCl extends HttpServlet {
                     res.addCookie(pass_cookie);
                 }
                 HttpSession hs = req.getSession(true);
-                hs.setMaxInactiveInterval(20);
+                hs.setMaxInactiveInterval(360);
                 hs.setAttribute("name", u);
                 String times = this.getServletContext().getAttribute("visitTimes").toString();
                 this.getServletContext().setAttribute("visitTimes",(Integer.parseInt(times)+1)+"");
-                res.sendRedirect("wel");
+                res.sendRedirect("main");
             }
             else
             {
