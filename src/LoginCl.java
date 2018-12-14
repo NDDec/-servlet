@@ -85,6 +85,7 @@ public class LoginCl extends HttpServlet {
                 String times = this.getServletContext().getAttribute("visitTimes").toString();
                 this.getServletContext().setAttribute("visitTimes",(Integer.parseInt(times)+1)+"");
                 res.sendRedirect("main");
+
             }
             else
             {
