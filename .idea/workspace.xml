@@ -6,20 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f08ad03-7ced-4d1b-b9ae-990d7f68dafa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ErrorInput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/UserBeanCl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/UserBeanCl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/Wel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/myWebSite_war_exploded/WEB-INF/classes/Wel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Wel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Wel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/UserBeanCl.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/UserBeanCl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/WEB-INF/classes/Wel.class" beforeDir="false" afterPath="$PROJECT_DIR$/web/WEB-INF/classes/Wel.class" afterDir="false" />
-    </list>
+    <list default="true" id="7f08ad03-7ced-4d1b-b9ae-990d7f68dafa" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/web/WEB-INF/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,7 +48,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Wel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
+            <state relative-caret-position="-485">
               <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -236,7 +223,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544967083876" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544967091531" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -582,16 +569,15 @@
       <workItem from="1544427779380" duration="143000" />
       <workItem from="1544428048091" duration="50000" />
       <workItem from="1544428135401" duration="2311000" />
-      <workItem from="1544797862618" duration="12686000" />
+      <workItem from="1544797862618" duration="12946000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13615000" />
+    <option name="totallyTimeSpent" value="13875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-2" width="1920" height="1082" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1474359" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -604,13 +590,13 @@
       <window_info id="Web" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32901832" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2437972" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2437972" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32842106" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.42502698" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.42502698" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32901832" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3291536" />
@@ -746,7 +732,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Wel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
+        <state relative-caret-position="-485">
           <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
