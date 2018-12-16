@@ -63,11 +63,20 @@ public class Wel extends HttpServlet {
             int pageSize = 10;//一页显示几条记录
             int pageNow=1;//希望显示第几页
             String spagenow = req.getParameter("pageNow");
+            UserBeanCl ubc = new UserBeanCl();
             if(spagenow != null)
             {
-                    pageNow = Integer.parseInt(spagenow);
+                double pageTmp = Double.valueOf(spagenow);
+                if(pageTmp > ubc.getPageCount(pageSize))
+                {
+                    //如果跳转页数大于最大页数，跳转至最后一页
+                    pageNow = ubc.getPageCount(pageSize);
+                }
+                else
+                {
+                    pageNow = (int) pageTmp;
+                }
             }
-            UserBeanCl ubc = new UserBeanCl();
             ArrayList al = ubc.getResultByPage(pageNow,pageSize);
             pw.println("<table border = 1>");
             pw.println("<tr bgcolor = silver><th>id</th><th>name</th><th>passwd</th><th>mail</th><th>grade</th><th>修改用户</th><th>删除用户</th>");
@@ -96,11 +105,11 @@ public class Wel extends HttpServlet {
             {
                 pw.println("<a href=wel?pageNow="+(pageNow-1)+">上一页</a>");
             }
-            for(int i = pageNow;i <= pageNow+4;i++)
+            for(int i = pageNow; i <= pageNow+4; i++)
             {
                 pw.println("<a href=wel?pageNow="+i+">"+i+"</a>");
             }
-            if(pageNow != ubc.getPageCount()) {
+            if(pageNow != ubc.getPageCount(pageSize)) {
                 pw.println("<a href=wel?pageNow=" + (pageNow + 1) + ">下一页</a><br>");
             }
             //制定跳转到某页，实际是一个表单
@@ -114,7 +123,6 @@ public class Wel extends HttpServlet {
             pw.println("您的ip="+req.getRemoteAddr()+"");
             pw.println(" 您的机器名="+req.getRemoteHost()+"<br>");
             pw.println("<br><a href = login>重新登录</a>");
-           // pw.println("</center><hr><img src = imgs/sysu.gif height = 200 width = 400>");
             pw.println("</body>");
         } catch (Exception ex) {
             ex.printStackTrace();

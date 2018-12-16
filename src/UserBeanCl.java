@@ -17,18 +17,10 @@ public class UserBeanCl
     private int pageCount = 0;//一共多少页
 
     //返回pagecount
-    public int getPageCount()
+    public int getPageCount(int pageSize)
     {
-        return this.pageCount;
-    }
-
-    //分页处理
-    public ArrayList getResultByPage(int pageNow, int pageSize)
-    {
-        ArrayList al = new ArrayList();
         try {
             int rowCount = 0;//一共多少条记录
-
             ConnDB cd = new ConnDB();
             ct = cd.getConn();
             ps = ct.prepareStatement("select count(*) from users");
@@ -37,11 +29,27 @@ public class UserBeanCl
                 rowCount = rs.getInt(1);
             }
             if (rowCount % pageSize == 0) {
-                pageCount = rowCount / pageSize;
+                pageCount = (rowCount / pageSize);
             } else {
-                pageCount = rowCount / pageSize + 1;
+                pageCount = (rowCount / pageSize + 1);
             }
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return this.pageCount;
+    }
 
+
+    //分页处理
+    public ArrayList getResultByPage(int pageNow, int pageSize)
+    {
+        ArrayList al = new ArrayList();
+        try {
+            ConnDB cd = new ConnDB();
+            ct = cd.getConn();
+            pageCount = this.getPageCount(pageSize);
             ps = ct.prepareStatement("select * from users limit ?,?");
             ps.setInt(1, (pageNow - 1) * pageSize);
             ps.setInt(2, pageSize);
