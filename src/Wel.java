@@ -66,10 +66,23 @@ public class Wel extends HttpServlet {
             UserBeanCl ubc = new UserBeanCl();
             if(spagenow != null)
             {
-                double pageTmp = Double.valueOf(spagenow);
+                double pageTmp = 0;
+                //输入不是数字
+                try {
+                    pageTmp = Double.valueOf(spagenow);
+                }
+                catch(Exception ex)
+                {
+                    res.sendRedirect("errorinput");
+                }
+                //输入数字小于0
+                if(pageTmp < 0)
+                {
+                    res.sendRedirect("errorinput");
+                }
+                //如果跳转页数大于最大页数，跳转至最后一页
                 if(pageTmp > ubc.getPageCount(pageSize))
                 {
-                    //如果跳转页数大于最大页数，跳转至最后一页
                     pageNow = ubc.getPageCount(pageSize);
                 }
                 else
@@ -113,7 +126,7 @@ public class Wel extends HttpServlet {
                 pw.println("<a href=wel?pageNow=" + (pageNow + 1) + ">下一页</a><br>");
             }
             //制定跳转到某页，实际是一个表单
-            //考虑的问题：输入页数过大，输入不是数字
+            //考虑的问题：输入页数过大，输入不是数字,输入是负数
             pw.println("<form action=wel>");
             pw.println("<input type = text name = pageNow>");
             pw.println("<input type = submit value = go>");
