@@ -20,7 +20,8 @@ public class Main extends HttpServlet {
             PrintWriter pw = res.getWriter();
             pw.println("<html>");
             pw.println("<body background = imgs/background.gif>");
-            pw.println("<br><br><br><br><br><br><br><br><br><br><br><br><hr><center>");
+            pw.println("<img src = imgs/wel.gif>");
+            pw.println("<hr><center>");
 
             pw.println("<h1>主界面</h1>");
             pw.println("<a href=wel>管理用户</a><br>");

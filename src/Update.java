@@ -16,7 +16,7 @@ public class Update extends HttpServlet {
             PrintWriter pw = res.getWriter();
             pw.println("<html>");
             pw.println("<body background = imgs/background.gif>");
-            pw.println("<img src = imgs/wel.gif><hr><center>");
+            pw.println("<hr><center>");
 
             pw.println("<h1>修改用户界面</h1>");
             pw.println("<form action = updatecl>");

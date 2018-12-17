@@ -22,7 +22,7 @@ public class Wel extends HttpServlet {
             PrintWriter pw = res.getWriter();
             String val = (String) hs.getAttribute("name");
             pw.println("<body background = imgs/background.gif>");
-            pw.println("<img src = imgs/wel.gif>&nbsp;&nbsp;&nbsp;&nbsp;欢迎您："+val+"<img src = imgs/qq.gif height = 35 width = 35>");
+            pw.println("欢迎您："+val+"<img src = imgs/qq.gif height = 35 width = 35>");
             pw.println("<hr><center>");
             //头像正确的处理应该从数据库中查询，这里暂时按照直接显示,添加一个字段
             pw.println("<h1>管理用户</h1>");
